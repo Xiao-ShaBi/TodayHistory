@@ -1,0 +1,22 @@
+<!--pages/todayhistory/todayhistory.wxml-->
+<view class="main">
+
+
+  <view class="date-show">
+    <image src="../images/arrow-l.png" style="width:12px;height:21px;"></image>
+    <view class="date">
+      <view class="date1">
+        <view class="date2">
+          <text style="height:13px;">2018</text>
+          <text style="height:32px;">1</text>
+          <text style="height:13px;">4月</text>
+        </view>
+      </view>
+    </view>
+    <image src="../images/arrow-r.png" style="width:12px;height:21px;"></image>
+  </view>
+
+  <scroll-view class="scroll-show">
+  </scroll-view>
+
+</view>
