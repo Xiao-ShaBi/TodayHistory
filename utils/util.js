@@ -19,11 +19,3 @@ function formatNumber(n) {
 module.exports = {
   formatTime: formatTime
 }
-
-module.setcolor = {
-
-}
-
-function setcolor(){
-  
-}

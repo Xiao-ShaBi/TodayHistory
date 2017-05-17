@@ -1,0 +1,47 @@
+<view >
+  <view class="header">
+  <view class="header1" style = "padding-top:{{circletop}}px">
+    <view class="prev" bindtap="clickPre"> </view>
+    <image class="next" bindtap="clickNext"></image>
+    <view wx:if="{{todayShow}}"><text class="todayBtn" bindtap="clickToday">今</text></view>
+    <view class="wrap1" >
+      <view class="wrap2">
+      <picker mode="date" value="{{date}}" start="1970-01-01" end="2099-09-01" bindchange="bindDateChange">
+        <view class="dateInfo">
+       
+        <text class="year"  wx:if="{{todayShow}}">{{year}}</text>
+        <text class="day" style = "top:{{daytop}}px"> {{day}}</text>
+        <text class="month"> {{month}}</text>
+       
+      
+   
+        </view>
+      </picker>
+      </view>
+    </view>
+    </view>
+   <text id="daycount" class="dayCount" wx:if="{{todayShow}}">{{dayCount}}</text>
+    
+  </view>
+  <!--<view class="block">
+  <block  wx:for="{{history}}">
+  <view class="historyrow">
+  <view class="historytime" ><text class="timetext">{{item.yearText}}</text></view>
+  <view class="historytext" style = "height:{{textheight[index]}}" >{{item.title}}</view>
+  </view>
+  </block>
+  </view>-->
+
+  <view class="block"  wx:for="{{history}}">
+    <view class="historyrow">
+      <view class="ll" wx:if="{{index == 0}}"><text class="historytime1" wx:if="{{index == 0}}">{{item.yearText}}</text></view>
+      <view class="ll" wx:if="{{index!=0}}"><text class="historytime" wx:if="{{index!=0}}">{{item.yearText}}</text></view>
+     <!--<view class = "line"></view>-->
+    <view class = "border">
+    <view class="textparent"  wx:if="{{index==0}}"><text class="text1" >{{item.title}}</text></view>
+   <view class="textparent" wx:if="{{index!=0}}"> <text class="text" >{{item.title}}</text></view>
+    </view>
+  </view>
+  </view>
+  <toast hidden="{{toastHidden}}" duration="3000" icon="warn" bindchange="toasthide"> 请检查网络 </toast>
+</view>
