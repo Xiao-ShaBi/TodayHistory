@@ -1,27 +1,30 @@
 <!--pages/todayhistory/todayhistory.wxml-->
-
 <view>
 <view class="main">
-
-
   <view class="date-show">
     <image bindtap="lastDay" src="../images/arrow-l.png" style="width:12px;height:21px;"></image>
+    <view class="classname">
     <view class="date">
       <view class="date1">
         <view class="date2">
-          <text style="height:13px;">{{year}}</text>
-          <text style="height:32px;">{{day}}</text>
+          <text style="height:13px;" wx:if="{{isYearShow}}">{{year}}</text>
+          <text style="height:32px;font-size : 32px;color : ">{{day}}</text>
           <text style="height:13px;">{{mounth}}</text>
         </view>
       </view>
     </view>
-    <text bindtap="nowDay">今</text>
+
+    <view style="font-size : 13px; color : #777777;margin-top : 7.5px;text-align:center;" wx:if="{{isYearShow}}">{{dayAfter}}</view>
+    <!--<view style="font-size : 13px; color : #777777; margin-top : 7.5px;text-align:center;">今天</view>-->
+    </view>
+    <text bindtap="nowDay" wx:if="{{isYearShow}}">今</text>
     <image bindtap="nextDay" src="../images/arrow-r.png" style="width:12px;height:21px;"></image>
   </view>
 
   <view class="scroll-show" wx:for="{{historys}}">
     <view class="show-history">
-      <view class="yeartext" wx:if="{{index > 0}}">{{item.yearText}}<image src="../images/dot.png" style="width : 12px; height : 12px;"/></view>
+    <image src="../images/dot.png" class="point" wx:if="{{index > 0}}"/>
+      <view class="yeartext" wx:if="{{index > 0}}">{{item.yearText}}</view>
       <view class="yeartext" wx:if="{{index == 0}}" style="font-size:12px;color : #333333;">{{item.yearText}}</view>
       <view class="block1">
         <view class="title" wx:if="{{index > 0}}">{{item.title}}</view>

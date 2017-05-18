@@ -1,5 +1,6 @@
 // pages/todayhistory/todayhistory.js
 var date = new Date();
+var today = new Date();
 
 
 Page({
@@ -7,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dayAfter : '',
+    isYearShow : false,
     historys : [],
     year : 1,
     mounth : 0,
@@ -33,6 +36,7 @@ Page({
   onShow: function () {
     var that = this;
     setDate(that);
+    showDay(that);
     request(that);
   },
 
@@ -88,18 +92,21 @@ Page({
       date.setDate(date.getDate() - 1);
       var that = this;
       setDate(that);
+      showDay(that);
       request(that);
   },
   nextDay : function(e){
     date.setDate(date.getDate() + 1);
     var that = this;
     setDate(that);
+    showDay(that);
     request(that);
   },
   nowDay : function(e){
     date= new Date();
     var that = this;
     setDate(that);
+    showDay(that);
     request(that);
   }
 })
@@ -121,7 +128,7 @@ Page({
          data: {
            skip: '0',
            limit: '20',
-           date: key
+           date:key
          },
          success: function (res) {
            console.log(res);
@@ -136,7 +143,7 @@ Page({
              toastHidden: false
            })
          }
-       })
+       });
      }
      })
 
@@ -153,5 +160,32 @@ function setDate(that) {
     year: date.getFullYear(),
     mounth: date.getMonth() + 1,
     day: date.getDate()
+  })
+}
+
+function showDay(that){
+  var flag = true;
+  var after = '';
+  var i = (date.getTime() - today.getTime()) / (60 * 60 * 24 * 1000);
+  var j = Math.round(i);
+  if (j == 0){
+    flag = false;
+  } else if (j < 0){
+    if(j == -1){
+      after = '昨天'; 
+    } else{
+      after = -j + '天前';
+    }
+  } else if(j > 0){
+    if(j == 1){
+      after = '明天';
+    } else {
+      after = j + '天后';
+    }
+  }
+  console.log(after);
+  that.setData({
+    isYearShow: flag,
+    dayAfter : after
   })
 }
